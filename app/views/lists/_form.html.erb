@@ -1,0 +1,34 @@
+<%= form_with(model: list, local: true, class: local_assigns[:class], data: local_assigns[:data]) do |form| %>
+  <% if list.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(list.errors.count, "error") %> prohibited this list from being saved:</h2>
+
+      <ul>
+      <% list.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <% if list.persisted? %>
+      <div class="float-right">
+        <%= link_to 'Destroy', list, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if list.persisted? %>
+      <%= link_to "Cancel", list, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", lists_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

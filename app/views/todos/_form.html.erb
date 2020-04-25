@@ -1,0 +1,33 @@
+<%= form_with(model: [list, todo], class: local_assigns[:class], data: local_assigns[:data]) do |form| %>
+  <% if todo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(todo.errors.count, "error") %> prohibited this todo from being saved:</h2>
+
+      <ul>
+      <% todo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.text_field :description, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <% if todo.persisted? %>
+      <div class="float-right">
+        <%= link_to 'Destroy', todo, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit "Save", class: 'btn btn-primary' %>
+
+    <% if todo.persisted? %>
+      <%= link_to "Cancel", root_path, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", root_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

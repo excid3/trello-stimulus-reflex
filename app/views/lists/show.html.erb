@@ -1,0 +1,18 @@
+<div class="page-header">
+  <%= link_to lists_path, class: 'btn btn-default' do %>
+    All Lists
+  <% end %>
+  <%= link_to edit_list_path(@list), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show list</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Name:</dt>
+  <dd><%= @list.name %></dd>
+
+  <dt>Position:</dt>
+  <dd><%= @list.position %></dd>
+
+</dl>
