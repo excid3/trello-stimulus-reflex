@@ -2,14 +2,7 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   resources :lists do
-    member do
-      patch :move
-    end
-    resources :todos do
-      member do
-        patch :move
-      end
-    end
+    resources :todos
   end
 
   namespace :admin do

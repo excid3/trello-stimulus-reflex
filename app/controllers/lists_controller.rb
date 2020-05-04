@@ -5,6 +5,7 @@ class ListsController < ApplicationController
   # GET /lists.json
   def index
     @lists = List.order(position: :asc)
+    @list ||= List.new
   end
 
   # GET /lists/1
@@ -59,11 +60,6 @@ class ListsController < ApplicationController
       format.html { redirect_to lists_url, notice: 'List was successfully destroyed.' }
       format.json { head :no_content }
     end
-  end
-
-  def move
-    @list.update(list_params)
-    head :ok
   end
 
   private
