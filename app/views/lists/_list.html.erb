@@ -1,0 +1,18 @@
+<%= content_tag :div, id: dom_id(list), class: ["col-sm-3", dom_class(list)], data: { id: list.id } do %>
+  <div class="card card-body bg-light">
+    <h6><%= link_to list.name, list %></h6>
+
+    <div data-controller="list" data-list-group="todos" data-id="<%= list.id %>">
+      <% list.todos.each do |todo| %>
+        <div class="card card-body mb-2" data-id="<%= todo.id %>">
+          <%= todo.description %>
+        </div>
+      <% end %>
+    </div>
+
+    <div data-reflex-permanent data-controller="toggle" data-toggle-class="d-none">
+      <%= link_to "Add todo", new_list_todo_path(list), data: { action: "click->toggle#toggle" }, class: "btn btn-light btn-block" %>
+      <%= render "todos/form", todo: Todo.new, list: list, class: "d-none", data: { target: "toggle.toggleable" } %>
+    </div>
+  </div>
+<% end %>
