@@ -31,4 +31,7 @@ class ListReflex < ApplicationReflex
 
     force_update(options["forceUpdateId"])
   end
+
+  def reload
+  end
 end
